@@ -27,7 +27,7 @@ class BBook {
 class BibleApi {
   BibleApi._();
   static final instance = BibleApi._();
-  static const _timeout = Duration(seconds: 15);
+  static const _timeout = Duration(seconds: 20);
 
   Future<BChapter> fetch({
     required String book,
@@ -38,10 +38,12 @@ class BibleApi {
     return _fetchEnglish(book, chapter);
   }
 
-  // ── English (KJV) ────────────────────────────────────────────────────
+  // ── English — bible-api.com ────────────────────────────────────────────
   Future<BChapter> _fetchEnglish(String book, int chapter) async {
     final url = 'https://bible-api.com/${Uri.encodeComponent('$book $chapter')}?translation=kjv';
-    final r   = await http.get(Uri.parse(url)).timeout(_timeout);
+    final r   = await http.get(Uri.parse(url),
+        headers: {'User-Agent': 'ChristConnect/1.0 (Android)'})
+        .timeout(_timeout);
     if (r.statusCode != 200) throw Exception('Network error (${r.statusCode})');
     final d = json.decode(r.body) as Map<String, dynamic>;
     if (d['error'] != null) throw Exception(d['error'].toString());
@@ -50,38 +52,90 @@ class BibleApi {
       final vt = (v['text']  as String).trim();
       return BVerse(vn, vt);
     }).toList();
-    if (vs.isEmpty) throw Exception('No verses found for $book $chapter');
+    if (vs.isEmpty) throw Exception('No verses found');
     return BChapter(book, chapter, 'KJV', vs);
   }
 
-  // ── Telugu (bolls.life) ───────────────────────────────────────────────
+  // ── Telugu — getbible.net (no API key, no restrictions) ──────────────
   Future<BChapter> _fetchTelugu(String book, int chapter) async {
-    final bookId = _teluguId(book);
-    if (bookId == null) throw Exception('Book not found: $book');
-    final url = 'https://bolls.life/get-chapter/tel/$bookId/$chapter/';
-    final r   = await http.get(Uri.parse(url),
-        headers: {'Accept': 'application/json'}).timeout(_timeout);
-    if (r.statusCode != 200) {
-      throw Exception('Telugu Bible error (${r.statusCode}). Check internet.');
+    final bookNum = _teluguId(book);
+    if (bookNum == null) throw Exception('Book not found: $book');
+
+    // getbible.net API — free, no auth needed
+    final url = 'https://getbible.net/v2/tel/$bookNum/$chapter.json';
+    try {
+      final r = await http.get(Uri.parse(url),
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; Mobile)',
+            'Accept':     'application/json',
+          }).timeout(_timeout);
+
+      if (r.statusCode == 200) {
+        final body = r.body.trim();
+        if (body.isNotEmpty && body.startsWith('{')) {
+          final d  = json.decode(body) as Map<String, dynamic>;
+          final vs = _parseGetBible(d);
+          if (vs.isNotEmpty) return BChapter(book, chapter, 'తెలుగు', vs);
+        }
+      }
+    } catch (_) {}
+
+    // Fallback — bolls.life
+    try {
+      final url2 = 'https://bolls.life/get-chapter/tel/$bookNum/$chapter/';
+      final r2   = await http.get(Uri.parse(url2),
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; Mobile)',
+            'Accept':     'application/json',
+            'Origin':     'https://bolls.life',
+          }).timeout(_timeout);
+
+      if (r2.statusCode == 200) {
+        final body = r2.body.trim();
+        if (body.startsWith('[')) {
+          final list = json.decode(body) as List;
+          if (list.isNotEmpty) {
+            final vs = list.asMap().entries.map((e) {
+              final v  = e.value as Map<String, dynamic>;
+              final vn = (v['verse'] as num?)?.toInt() ?? (e.key + 1);
+              var   vt = (v['text']  as String? ?? '').trim();
+              vt = _cleanHtml(vt);
+              return BVerse(vn, vt);
+            }).where((v) => v.text.isNotEmpty).toList();
+            if (vs.isNotEmpty) return BChapter(book, chapter, 'తెలుగు', vs);
+          }
+        }
+      }
+    } catch (_) {}
+
+    throw Exception(
+      'తెలుగు Bible లోడ్ కాలేదు.\n'
+      'Internet connection check చేయండి\nలేదా కొద్దిసేపు తర్వాత try చేయండి.');
+  }
+
+  List<BVerse> _parseGetBible(Map<String, dynamic> d) {
+    try {
+      final verses = d['verses'] as Map<String, dynamic>?;
+      if (verses == null) return [];
+      return verses.entries.map((e) {
+        final vn = int.tryParse(e.key) ?? 0;
+        final vd = e.value as Map<String, dynamic>;
+        final vt = (vd['verse'] as String? ?? '').trim();
+        return BVerse(vn, vt);
+      }).where((v) => v.text.isNotEmpty)
+          .toList()
+        ..sort((a, b) => a.verseNum.compareTo(b.verseNum));
+    } catch (_) {
+      return [];
     }
-    final body = r.body.trim();
-    if (!body.startsWith('[')) {
-      throw Exception('Invalid Telugu Bible response. Try again.');
-    }
-    final list = json.decode(body) as List;
-    if (list.isEmpty) throw Exception('No verses found.');
-    final vs = list.asMap().entries.map((e) {
-      final v   = e.value as Map<String, dynamic>;
-      final vn  = (v['verse'] as num?)?.toInt() ?? (e.key + 1);
-      var   vt  = (v['text']  as String? ?? '').trim();
-      vt = vt
-          .replaceAll('&quot;', '"').replaceAll('&amp;', '&')
-          .replaceAll('&lt;', '<').replaceAll('&gt;', '>')
-          .replaceAll('&#39;', "'").replaceAll(RegExp(r'<[^>]+>'), '');
-      return BVerse(vn, vt);
-    }).where((v) => v.text.isNotEmpty).toList();
-    if (vs.isEmpty) throw Exception('Verses are empty. Try another chapter.');
-    return BChapter(book, chapter, 'తెలుగు', vs);
+  }
+
+  String _cleanHtml(String text) {
+    return text
+        .replaceAll('&quot;', '"').replaceAll('&amp;', '&')
+        .replaceAll('&lt;', '<').replaceAll('&gt;', '>')
+        .replaceAll('&#39;', "'").replaceAll(RegExp(r'<[^>]+>'), '')
+        .trim();
   }
 
   int? _teluguId(String book) => _ids[book];
