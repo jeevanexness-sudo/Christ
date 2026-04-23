@@ -9,179 +9,195 @@
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: #070D1C; color: #E2E8F0; min-height: 100vh; }
   .header { background: #0C1629; border-bottom: 1px solid #ffffff18;
-    padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+    padding: 16px 24px; }
   .header h1 { font-size: 20px; font-weight: 700; color: #F4A623; }
-  .header span { font-size: 12px; color: #7B8FA6; }
-  .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+  .header p  { font-size: 12px; color: #7B8FA6; margin-top: 2px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 24px; }
   .card { background: #101E35; border: 1px solid #ffffff18;
     border-radius: 16px; padding: 24px; margin-bottom: 20px; }
-  .card h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px;
-    color: #F4A623; display: flex; align-items: center; gap: 8px; }
+  .card h2 { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: #F4A623; }
   label { display: block; font-size: 11px; font-weight: 600;
-    color: #94A3B8; letter-spacing: 0.5px; margin-bottom: 6px; }
-  input, select, textarea {
-    width: 100%; padding: 10px 14px; background: #070D1C;
-    border: 1px solid #ffffff22; border-radius: 10px;
-    color: #E2E8F0; font-size: 14px; margin-bottom: 14px;
-    outline: none; transition: border-color 0.2s; }
+    color: #94A3B8; letter-spacing: 0.8px; margin-bottom: 6px; text-transform: uppercase; }
+  input, select { width: 100%; padding: 11px 14px; background: #070D1C;
+    border: 1px solid #ffffff22; border-radius: 10px; color: #E2E8F0;
+    font-size: 14px; margin-bottom: 14px; outline: none; transition: 0.2s; }
   input:focus, select:focus { border-color: #F4A623; }
-  input[type="file"] { padding: 8px; cursor: pointer; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .btn { padding: 12px 20px; border: none; border-radius: 10px;
-    font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-  .btn-gold { background: #F4A623; color: #000; width: 100%; }
+  .btn { padding: 13px 20px; border: none; border-radius: 10px;
+    font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; }
+  .btn-gold { background: #F4A623; color: #000; }
   .btn-gold:hover { background: #e09010; }
-  .btn-gold:disabled { background: #555; color: #999; cursor: not-allowed; }
-  .btn-red { background: #E24B4A22; color: #E24B4A;
-    border: 1px solid #E24B4A44; font-size: 12px; padding: 6px 12px; }
-  .progress { background: #ffffff18; border-radius: 4px; height: 6px;
-    margin: 10px 0; overflow: hidden; display: none; }
-  .progress-bar { height: 100%; background: #F4A623;
-    border-radius: 4px; transition: width 0.3s; width: 0%; }
+  .btn-gold:disabled { background: #444; color: #888; cursor: not-allowed; }
+  .btn-red { background: #E24B4A18; color: #E24B4A;
+    border: 1px solid #E24B4A33; font-size: 12px; padding: 6px 14px;
+    width: auto; border-radius: 8px; }
   .msg { padding: 10px 14px; border-radius: 10px; font-size: 13px;
     margin-top: 10px; display: none; }
-  .msg.ok  { background: #10B98122; color: #10B981; border: 1px solid #10B98133; }
-  .msg.err { background: #E24B4A22; color: #E24B4A; border: 1px solid #E24B4A33; }
-  .songs-list { margin-top: 16px; }
-  .song-item { background: #162540; border: 1px solid #ffffff15;
-    border-radius: 12px; padding: 14px; margin-bottom: 10px;
-    display: flex; align-items: center; gap: 12px; }
-  .song-info { flex: 1; min-width: 0; }
-  .song-title { font-size: 14px; font-weight: 600; margin-bottom: 2px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .song-meta { font-size: 11px; color: #7B8FA6; }
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px;
-    font-size: 10px; font-weight: 700; margin-right: 6px; }
-  .badge-te { background: #F4A62322; color: #F4A623; }
-  .badge-en { background: #2B5CE622; color: #2B5CE6; }
-  .badge-hy { background: #10B98122; color: #10B981; }
-  .bulk-drop { border: 2px dashed #ffffff33; border-radius: 12px;
-    padding: 30px; text-align: center; cursor: pointer; transition: 0.2s; }
-  .bulk-drop:hover, .bulk-drop.drag { border-color: #F4A623;
-    background: #F4A62308; }
-  .bulk-files { margin-top: 12px; max-height: 200px; overflow-y: auto; }
-  .bulk-file { padding: 8px 12px; background: #0C1629;
-    border-radius: 8px; margin-bottom: 6px; font-size: 12px;
-    display: flex; justify-content: space-between; align-items: center; }
-  .tab-btns { display: flex; gap: 8px; margin-bottom: 20px; }
+  .msg.ok  { background: #10B98120; color: #10B981; border: 1px solid #10B98133; }
+  .msg.err { background: #E24B4A20; color: #E24B4A; border: 1px solid #E24B4A33; }
+  .tab-btns { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
   .tab-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #ffffff22;
     background: transparent; color: #7B8FA6; cursor: pointer;
     font-size: 12px; font-weight: 600; transition: 0.2s; }
   .tab-btn.active { background: #F4A623; color: #000; border-color: #F4A623; }
-  .loading { display: none; width: 18px; height: 18px;
-    border: 2px solid #ffffff33; border-top-color: #000;
-    border-radius: 50%; animation: spin 0.8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .info-box { background: #0A1830; border: 1px solid #F4A62333;
+    border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .info-box h3 { color: #F4A623; font-size: 13px; margin-bottom: 10px; }
+  .info-box ol { padding-left: 18px; }
+  .info-box li { font-size: 12px; color: #94A3B8; margin-bottom: 6px; line-height: 1.6; }
+  .info-box code { background: #ffffff15; padding: 1px 6px;
+    border-radius: 4px; font-size: 11px; color: #F4A623; }
+  .song-item { background: #162540; border: 1px solid #ffffff12;
+    border-radius: 12px; padding: 14px; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 12px; }
+  .song-info { flex: 1; min-width: 0; }
+  .song-title { font-size: 14px; font-weight: 600; margin-bottom: 3px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .song-meta { font-size: 11px; color: #7B8FA6; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .badge-te { background: #F4A62320; color: #F4A623; }
+  .badge-en { background: #2B5CE620; color: #6B9EFF; }
+  .badge-hy { background: #10B98120; color: #10B981; }
+  .bulk-area { border: 2px dashed #ffffff25; border-radius: 12px;
+    padding: 20px; margin-bottom: 14px; }
+  .bulk-area textarea { background: transparent; border: none;
+    width: 100%; height: 120px; resize: vertical; font-size: 13px;
+    color: #E2E8F0; outline: none; font-family: monospace; margin: 0; padding: 0; }
+  .status { font-size: 12px; color: #7B8FA6; margin: 8px 0; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div>
-    <h1>✝️ Christ Connect Admin</h1>
-    <span id="statusText">Loading Firebase...</span>
-  </div>
+  <h1>✝️ Christ Connect — Admin Panel</h1>
+  <p id="statusText">Connecting to Firebase...</p>
 </div>
 
 <div class="container">
-  <!-- Tabs -->
   <div class="tab-btns">
-    <button class="tab-btn active" onclick="showTab('upload')">📤 Upload Song</button>
-    <button class="tab-btn" onclick="showTab('bulk')">📦 Bulk Upload</button>
-    <button class="tab-btn" onclick="showTab('manage')">🎵 Manage Songs</button>
+    <button class="tab-btn active" onclick="showTab('single')">➕ Add Song</button>
+    <button class="tab-btn" onclick="showTab('bulk')">📦 Bulk Add</button>
+    <button class="tab-btn" onclick="showTab('manage')">🎵 Manage</button>
+    <button class="tab-btn" onclick="showTab('guide')">📖 Guide</button>
   </div>
 
-  <!-- ── Tab: Single Upload ── -->
-  <div id="tab-upload">
+  <!-- ── Single Add ── -->
+  <div id="tab-single">
+    <div class="info-box">
+      <h3>📌 Google Drive Link ఎలా get చేయాలి?</h3>
+      <ol>
+        <li>Google Drive లో MP3 file upload చేయండి</li>
+        <li>File మీద right click → <code>Share</code> → <code>Anyone with the link</code></li>
+        <li><code>Copy link</code> చేయండి</li>
+        <li>ఆ link ఇక్కడ paste చేయండి</li>
+      </ol>
+    </div>
     <div class="card">
-      <h2>📤 Upload Single Song</h2>
+      <h2>➕ Add Song</h2>
       <div class="row">
         <div>
-          <label>SONG TITLE *</label>
+          <label>Song Title *</label>
           <input type="text" id="title" placeholder="Song name...">
         </div>
         <div>
-          <label>ARTIST / SINGER *</label>
-          <input type="text" id="artist" placeholder="Artist name...">
+          <label>Artist *</label>
+          <input type="text" id="artist" placeholder="Singer name...">
         </div>
       </div>
-      <div class="row">
-        <div>
-          <label>CATEGORY</label>
-          <select id="category">
-            <option value="telugu">Telugu Worship</option>
-            <option value="english">English Worship</option>
-            <option value="hymn">Hymn</option>
-          </select>
-        </div>
-        <div>
-          <label>MP3 FILE *</label>
-          <input type="file" id="mp3File" accept="audio/mpeg,audio/mp3,.mp3">
-        </div>
+      <label>Category</label>
+      <select id="category">
+        <option value="telugu">తెలుగు Worship</option>
+        <option value="english">English Worship</option>
+        <option value="hymn">Hymn</option>
+      </select>
+      <label>Google Drive / Direct MP3 Link *</label>
+      <input type="url" id="driveLink"
+        placeholder="https://drive.google.com/file/d/... or direct .mp3 link">
+      <div id="linkPreview" style="display:none; margin-bottom:14px;">
+        <audio id="audioPreview" controls style="width:100%; margin-top:4px;"></audio>
       </div>
-      <div class="progress" id="singleProgress">
-        <div class="progress-bar" id="singleBar"></div>
-      </div>
-      <button class="btn btn-gold" id="uploadBtn" onclick="uploadSingle()">
-        <span id="uploadText">Upload Song</span>
-        <div class="loading" id="uploadLoading"></div>
-      </button>
+      <button class="btn btn-gold" id="addBtn" onclick="addSong()">Add Song</button>
       <div class="msg" id="singleMsg"></div>
     </div>
   </div>
 
-  <!-- ── Tab: Bulk Upload ── -->
+  <!-- ── Bulk Add ── -->
   <div id="tab-bulk" style="display:none">
     <div class="card">
-      <h2>📦 Bulk Upload Songs</h2>
-      <label>CATEGORY FOR ALL FILES</label>
+      <h2>📦 Bulk Add Songs</h2>
+      <p style="font-size:12px;color:#94A3B8;margin-bottom:14px;">
+        Multiple songs ఒకేసారి add చేయవచ్చు — ప్రతి line లో ఒక song.
+        Format: <code style="background:#ffffff15;padding:2px 6px;border-radius:4px;color:#F4A623">
+        Title | Artist | Category | Drive Link</code>
+      </p>
+      <label>Category</label>
       <select id="bulkCategory">
-        <option value="telugu">Telugu Worship</option>
+        <option value="telugu">తెలుగు Worship</option>
         <option value="english">English Worship</option>
         <option value="hymn">Hymn</option>
       </select>
-      <label>SELECT MULTIPLE MP3 FILES</label>
-      <div class="bulk-drop" id="bulkDrop" onclick="document.getElementById('bulkFiles').click()">
-        <div style="font-size:32px;margin-bottom:8px">🎵</div>
-        <div style="font-size:14px;color:#94A3B8">Click or drag & drop MP3 files here</div>
-        <div style="font-size:11px;color:#7B8FA6;margin-top:4px">Multiple files supported</div>
+      <label>Songs (one per line — Title | Artist | Link)</label>
+      <div class="bulk-area">
+        <textarea id="bulkText"
+          placeholder="యేసయ్య నా జీవితం | Telugu Worship | https://drive.google.com/...
+Amazing Grace | Traditional | https://drive.google.com/...
+Way Maker | Sinach | https://drive.google.com/..."></textarea>
       </div>
-      <input type="file" id="bulkFiles" accept=".mp3,audio/mpeg" multiple style="display:none"
-        onchange="handleBulkFiles(this.files)">
-      <div class="bulk-files" id="bulkFilesList"></div>
-      <div class="progress" id="bulkProgress">
-        <div class="progress-bar" id="bulkBar"></div>
-      </div>
-      <div id="bulkStatus" style="font-size:12px;color:#94A3B8;margin:8px 0;"></div>
-      <button class="btn btn-gold" id="bulkBtn" onclick="uploadBulk()" style="display:none">
-        Upload All Songs
-      </button>
+      <div class="status" id="bulkStatus"></div>
+      <button class="btn btn-gold" onclick="bulkAdd()">Add All Songs</button>
       <div class="msg" id="bulkMsg"></div>
     </div>
   </div>
 
-  <!-- ── Tab: Manage ── -->
+  <!-- ── Manage ── -->
   <div id="tab-manage" style="display:none">
     <div class="card">
-      <h2>🎵 All Songs</h2>
+      <h2>🎵 All Songs <button class="btn-red" onclick="loadSongs()" style="margin-left:10px">🔄 Refresh</button></h2>
       <div id="songsList">
-        <div style="text-align:center;padding:30px;color:#7B8FA6">Loading songs...</div>
+        <div style="text-align:center;padding:30px;color:#7B8FA6">Click Refresh to load songs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Guide ── -->
+  <div id="tab-guide" style="display:none">
+    <div class="card">
+      <h2>📖 Songs Upload Guide</h2>
+      <div class="info-box" style="margin-bottom:14px;">
+        <h3>🎵 Method 1 — Google Drive (Free)</h3>
+        <ol>
+          <li>drive.google.com లో MP3 upload చేయండి</li>
+          <li>File → Share → Anyone with the link → Viewer</li>
+          <li>Copy link → Admin panel లో paste చేయండి</li>
+          <li>App లో automatically play అవుతుంది ✅</li>
+        </ol>
+      </div>
+      <div class="info-box" style="margin-bottom:14px;">
+        <h3>🌐 Method 2 — Direct MP3 URL</h3>
+        <ol>
+          <li>ఏదైనా website నుండి direct .mp3 link వాడవచ్చు</li>
+          <li>Example: <code>https://example.com/song.mp3</code></li>
+          <li>Link directly paste చేయండి</li>
+        </ol>
+      </div>
+      <div class="info-box">
+        <h3>⚠️ Important Notes</h3>
+        <ol>
+          <li>Google Drive share link ని app automatically convert చేస్తుంది</li>
+          <li>Internet connection అవసరం songs play అవడానికి</li>
+          <li>Large MP3 files slow internet లో buffer అవుతాయి</li>
+        </ol>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Firebase v9 CDN -->
 <script type="module">
-import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp }
-    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL }
-    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-// ── YOUR FIREBASE CONFIG ────────────────────────────────────────────────
-// Replace with your actual Firebase config from Firebase Console
-// Project Settings → Your apps → SDK setup → Config
 const firebaseConfig = {
   apiKey:            "AIzaSyDs4PXXuQ9RSmJNYbMOkszVmK14DSEXAfc",
   authDomain:        "christ-connect-854ba.firebaseapp.com",
@@ -190,181 +206,150 @@ const firebaseConfig = {
   messagingSenderId: "286239149141",
   appId:             "1:286239149141:web:16550b6f90d49b5c6a58dc"
 };
-// ────────────────────────────────────────────────────────────────────────
 
-const app     = initializeApp(firebaseConfig);
-const db      = getFirestore(app);
-const storage = getStorage(app);
-
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
 document.getElementById('statusText').textContent = '✅ Firebase connected';
 
-// ── Upload single song ────────────────────────────────────────────────
-window.uploadSingle = async function() {
+// Convert Google Drive share link → direct download link
+function convertDriveLink(url) {
+  if (!url) return '';
+  // https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+  const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (match) {
+    return `https://drive.google.com/uc?export=download&id=${match[1]}`;
+  }
+  return url; // already direct link
+}
+
+// Preview audio when link pasted
+document.getElementById('driveLink').addEventListener('change', function() {
+  const url = convertDriveLink(this.value.trim());
+  if (url) {
+    document.getElementById('audioPreview').src = url;
+    document.getElementById('linkPreview').style.display = 'block';
+  }
+});
+
+// Add single song
+window.addSong = async function() {
   const title    = document.getElementById('title').value.trim();
   const artist   = document.getElementById('artist').value.trim();
   const category = document.getElementById('category').value;
-  const file     = document.getElementById('mp3File').files[0];
+  const rawLink  = document.getElementById('driveLink').value.trim();
 
-  if (!title)  return showMsg('singleMsg', 'Enter song title', 'err');
-  if (!artist) return showMsg('singleMsg', 'Enter artist name', 'err');
-  if (!file)   return showMsg('singleMsg', 'Select MP3 file', 'err');
+  if (!title)   return showMsg('singleMsg', 'Title enter చేయండి', 'err');
+  if (!rawLink) return showMsg('singleMsg', 'Drive link enter చేయండి', 'err');
 
-  setLoading('uploadBtn', 'uploadText', 'uploadLoading', true);
-  showProgress('singleProgress');
+  const mp3Url = convertDriveLink(rawLink);
+  document.getElementById('addBtn').disabled = true;
+  document.getElementById('addBtn').textContent = 'Adding...';
 
   try {
-    const url = await uploadFile(file, `songs/${Date.now()}_${file.name}`,
-        p => setBar('singleBar', p));
     await addDoc(collection(db, 'songs'), {
-      title, artist, category,
-      mp3Url:      url,
-      coverUrl:    '',
-      durationSecs: 0,
-      createdAt:   serverTimestamp(),
+      title, artist: artist || 'Unknown', category,
+      mp3Url, coverUrl: '', durationSecs: 0,
+      createdAt: serverTimestamp(),
     });
-    showMsg('singleMsg', `✅ "${title}" uploaded!`, 'ok');
-    document.getElementById('title').value  = '';
-    document.getElementById('artist').value = '';
-    document.getElementById('mp3File').value = '';
+    showMsg('singleMsg', `✅ "${title}" added successfully!`, 'ok');
+    document.getElementById('title').value     = '';
+    document.getElementById('artist').value    = '';
+    document.getElementById('driveLink').value = '';
+    document.getElementById('linkPreview').style.display = 'none';
   } catch(e) {
-    showMsg('singleMsg', '❌ Upload failed: ' + e.message, 'err');
+    showMsg('singleMsg', '❌ Error: ' + e.message, 'err');
   }
-  setLoading('uploadBtn', 'uploadText', 'uploadLoading', false);
+  document.getElementById('addBtn').disabled    = false;
+  document.getElementById('addBtn').textContent = 'Add Song';
 };
 
-// ── Bulk upload ────────────────────────────────────────────────────────
-let bulkFilesList = [];
+// Bulk add
+window.bulkAdd = async function() {
+  const text     = document.getElementById('bulkText').value.trim();
+  const defCat   = document.getElementById('bulkCategory').value;
+  const lines    = text.split('\n').filter(l => l.trim());
+  if (!lines.length) return showMsg('bulkMsg', 'Songs enter చేయండి', 'err');
 
-window.handleBulkFiles = function(files) {
-  bulkFilesList = Array.from(files);
-  const list = document.getElementById('bulkFilesList');
-  list.innerHTML = bulkFilesList.map((f, i) => `
-    <div class="bulk-file">
-      <span>🎵 ${f.name.replace('.mp3','').replace(/_/g,' ')}</span>
-      <span style="color:#7B8FA6;font-size:11px">${(f.size/1024/1024).toFixed(1)} MB</span>
-    </div>`).join('');
-  document.getElementById('bulkBtn').style.display =
-      bulkFilesList.length > 0 ? 'block' : 'none';
-  document.getElementById('bulkStatus').textContent =
-      `${bulkFilesList.length} files selected`;
-};
-
-window.uploadBulk = async function() {
-  if (bulkFilesList.length === 0) return;
-  const category = document.getElementById('bulkCategory').value;
-  showProgress('bulkProgress');
   let done = 0;
+  document.getElementById('bulkStatus').textContent = `Adding 0/${lines.length}...`;
 
-  for (const file of bulkFilesList) {
-    const name = file.name.replace('.mp3','').replace(/_/g,' ');
-    document.getElementById('bulkStatus').textContent =
-        `Uploading ${done+1}/${bulkFilesList.length}: ${name}`;
+  for (const line of lines) {
+    const parts = line.split('|').map(p => p.trim());
+    const title  = parts[0] || 'Unknown';
+    const artist = parts[1] || 'Unknown';
+    const cat    = parts[2] && ['telugu','english','hymn'].includes(parts[2].toLowerCase())
+        ? parts[2].toLowerCase() : defCat;
+    const rawUrl = parts[3] || parts[2] || '';
+    const mp3Url = convertDriveLink(rawUrl);
     try {
-      const url = await uploadFile(file, `songs/${Date.now()}_${file.name}`,
-          p => setBar('bulkBar', (done / bulkFilesList.length + p / bulkFilesList.length / 100) * 100));
       await addDoc(collection(db, 'songs'), {
-        title:    name,
-        artist:   'Unknown',
-        category, mp3Url: url,
-        coverUrl: '', durationSecs: 0,
+        title, artist, category: cat,
+        mp3Url, coverUrl: '', durationSecs: 0,
         createdAt: serverTimestamp(),
       });
       done++;
-    } catch(e) {
-      console.error('Failed:', file.name, e);
-    }
+      document.getElementById('bulkStatus').textContent = `Added ${done}/${lines.length}...`;
+    } catch(e) { console.error(e); }
   }
-  setBar('bulkBar', 100);
+
   document.getElementById('bulkStatus').textContent = '';
-  showMsg('bulkMsg', `✅ ${done}/${bulkFilesList.length} songs uploaded!`, 'ok');
-  bulkFilesList = [];
-  document.getElementById('bulkFilesList').innerHTML = '';
-  document.getElementById('bulkBtn').style.display = 'none';
+  showMsg('bulkMsg', `✅ ${done}/${lines.length} songs added!`, 'ok');
+  document.getElementById('bulkText').value = '';
 };
 
-// ── Load songs ─────────────────────────────────────────────────────────
+// Load songs
 window.loadSongs = async function() {
-  const snap  = await getDocs(collection(db, 'songs'));
-  const songs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  const list  = document.getElementById('songsList');
-  if (songs.length === 0) {
-    list.innerHTML = '<div style="text-align:center;padding:30px;color:#7B8FA6">No songs yet. Upload some!</div>';
-    return;
-  }
-  const badgeCls = {'telugu':'badge-te','english':'badge-en','hymn':'badge-hy'};
-  list.innerHTML = songs.map(s => `
-    <div class="song-item">
-      <div class="song-info">
-        <div class="song-title">${s.title}</div>
-        <div class="song-meta">
-          <span class="badge ${badgeCls[s.category]||'badge-te'}">${s.category}</span>
-          ${s.artist}
+  document.getElementById('songsList').innerHTML =
+    '<div style="text-align:center;padding:20px;color:#7B8FA6">Loading...</div>';
+  try {
+    const snap  = await getDocs(collection(db, 'songs'));
+    const songs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    if (!songs.length) {
+      document.getElementById('songsList').innerHTML =
+        '<div style="text-align:center;padding:20px;color:#7B8FA6">No songs yet. Add some!</div>';
+      return;
+    }
+    const bc = {telugu:'badge-te', english:'badge-en', hymn:'badge-hy'};
+    document.getElementById('songsList').innerHTML = songs.map(s => `
+      <div class="song-item">
+        <div class="song-info">
+          <div class="song-title">${s.title}</div>
+          <div class="song-meta">
+            <span class="badge ${bc[s.category]||'badge-te'}">${s.category}</span>
+            ${s.artist}
+          </div>
         </div>
-      </div>
-      <button class="btn btn-red" onclick="deleteSong('${s.id}','${s.title}')">🗑 Delete</button>
-    </div>`).join('');
+        <button class="btn-red" onclick="delSong('${s.id}','${s.title.replace(/'/g,"\\'")}')">🗑 Delete</button>
+      </div>`).join('');
+  } catch(e) {
+    document.getElementById('songsList').innerHTML =
+      `<div style="color:#E24B4A;padding:14px">Error: ${e.message}</div>`;
+  }
 };
 
-window.deleteSong = async function(id, title) {
+window.delSong = async function(id, title) {
   if (!confirm(`Delete "${title}"?`)) return;
   await deleteDoc(doc(db, 'songs', id));
   loadSongs();
 };
 
-// ── Helpers ───────────────────────────────────────────────────────────
-function uploadFile(file, path, onProgress) {
-  return new Promise((res, rej) => {
-    const storageRef = ref(storage, path);
-    const task       = uploadBytesResumable(storageRef, file);
-    task.on('state_changed',
-      snap => onProgress(snap.bytesTransferred / snap.totalBytes * 100),
-      rej,
-      () => getDownloadURL(task.snapshot.ref).then(res)
-    );
-  });
-}
-
 function showMsg(id, text, type) {
   const el = document.getElementById(id);
-  el.textContent = text;
-  el.className   = `msg ${type}`;
+  el.textContent   = text;
+  el.className     = `msg ${type}`;
   el.style.display = 'block';
   setTimeout(() => el.style.display = 'none', 4000);
 }
 
-function showProgress(id) {
-  document.getElementById(id).style.display = 'block';
-}
-
-function setBar(id, pct) {
-  document.getElementById(id).style.width = pct + '%';
-}
-
-function setLoading(btnId, txtId, loadId, on) {
-  document.getElementById(btnId).disabled = on;
-  document.getElementById(txtId).style.display = on ? 'none' : 'inline';
-  document.getElementById(loadId).style.display = on ? 'inline-block' : 'none';
-}
-
 window.showTab = function(tab) {
-  ['upload','bulk','manage'].forEach(t => {
+  ['single','bulk','manage','guide'].forEach(t => {
     document.getElementById(`tab-${t}`).style.display = t === tab ? 'block' : 'none';
   });
-  document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', ['upload','bulk','manage'][i] === tab);
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['single','bulk','manage','guide'][i] === tab);
   });
   if (tab === 'manage') loadSongs();
 };
-
-// Drag & Drop
-const dropZone = document.getElementById('bulkDrop');
-dropZone.addEventListener('dragover',  e => { e.preventDefault(); dropZone.classList.add('drag'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
-dropZone.addEventListener('drop', e => {
-  e.preventDefault();
-  dropZone.classList.remove('drag');
-  window.handleBulkFiles(e.dataTransfer.files);
-});
 </script>
 </body>
 </html>
