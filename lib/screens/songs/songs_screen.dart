@@ -6,6 +6,17 @@ import '../../core/colors.dart';
 import '../../core/styles.dart';
 import '../../services/song_service.dart';
 
+
+// Convert Google Drive share link to direct download URL
+String _convertDriveLink(String url) {
+  if (url.isEmpty) return url;
+  final match = RegExp(r'/d/([a-zA-Z0-9_-]+)').firstMatch(url);
+  if (match != null) {
+    return 'https://drive.google.com/uc?export=download&id=${match.group(1)}';
+  }
+  return url;
+}
+
 // ════════════════════════════════════════════════════════════════════════════
 // Songs Screen — MP3 Player
 // ════════════════════════════════════════════════════════════════════════════
@@ -59,7 +70,7 @@ class _SongsScreenState extends State<SongsScreen> {
     }
     setState(() { _playing = song; _pos = Duration.zero; });
     await _player.stop();
-    await _player.play(UrlSource(song.mp3Url));
+    await _player.play(UrlSource(_convertDriveLink(song.mp3Url)));
   }
 
   Future<void> _seek(double v) async {
