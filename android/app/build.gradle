@@ -15,7 +15,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     namespace "com.example.christ_connect"
-    compileSdkVersion 34
+    compileSdkVersion 35
     ndkVersion flutter.ndkVersion
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -26,25 +26,12 @@ android {
     defaultConfig {
         applicationId "com.example.christ_connect"
         minSdkVersion 23
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
     buildTypes {
         release { signingConfig signingConfigs.debug }
-    }
-}
-
-// Fix namespace for flutter plugins
-subprojects {
-    afterEvaluate { project ->
-        if (project.plugins.hasPlugin("com.android.library")) {
-            project.android {
-                if (namespace == null) {
-                    namespace project.group
-                }
-            }
-        }
     }
 }
 
