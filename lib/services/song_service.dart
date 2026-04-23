@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class Song {
-  final String id;
-  final String title;
-  final String artist;
-  final String category; // 'telugu' | 'english' | 'hymn'
-  final String mp3Url;   // Firebase Storage URL
-  final String coverUrl; // optional cover image URL
-  final int    durationSecs;
+  final String   id;
+  final String   title;
+  final String   artist;
+  final String   category;
+  final String   mp3Url;
+  final String   coverUrl;
+  final int      durationSecs;
   final DateTime createdAt;
 
   const Song({
@@ -16,8 +17,8 @@ class Song {
     required this.artist,
     required this.category,
     required this.mp3Url,
-    this.coverUrl      = '',
-    this.durationSecs  = 0,
+    this.coverUrl     = '',
+    this.durationSecs = 0,
     required this.createdAt,
   });
 
@@ -69,8 +70,6 @@ class Song {
     }
   }
 }
-
-import 'package:flutter/material.dart';
 
 class SongService {
   SongService._();
